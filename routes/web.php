@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\CustomLoginController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DispatcherRedirectController;
+use App\Http\Controllers\SupervisorRedirectController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +24,19 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/login/custom', [CustomLoginController::class, 'login'])->name('login.custom');
 
-Auth::routes();
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/supervisor', [SupervisorRedirectController::class, 'index'])->name('supervisor.index');
+    Route::get('/dispatcher', [DispatcherRedirectController::class, 'index'])->name('dispatcher.index');
+});
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware(['supervisor'])->group(function () {
+    Route::get('/supervisor', [SupervisorRedirectController::class, 'index'])->name('supervisor.index');
+});
+
+Route::middleware(['dispatcher'])->group(function () {
+    Route::get('/dispatcher', [DispatcherRedirectController::class, 'index'])->name('dispatcher.index');
+});

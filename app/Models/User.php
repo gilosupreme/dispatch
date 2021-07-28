@@ -48,4 +48,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+
+    public function is_supervisor()
+    {
+        return $this->role()->where('id', 1)->exists();
+    }
+
+    public function is_dispatcher()
+    {
+        return $this->role()->where('id', 2)->exists();
+    }
 }

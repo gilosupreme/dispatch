@@ -30,6 +30,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-10">
+
                     <div class="wrap d-md-flex">
                         <div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last">
                             <div class="text w-100">
@@ -46,7 +47,7 @@
                             </div>
                         </div>
 
-                        <form method="POST" action="{{ route('login') }}" class="signin-form">
+                        <form method="POST" action="{{ route('login.custom') }}" class="signin-form">
                             @csrf
                             <div class="form-group mb-3">
                                 <label class="label" for="email">{{ __('E-Mail Address') }}</label>
