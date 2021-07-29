@@ -1,1 +1,1 @@
-<h1>Supervisor</h1>
+@extends('layouts.dashboard')

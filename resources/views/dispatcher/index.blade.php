@@ -1,1 +1,1 @@
-<h1>Dispatcher</h1>
+@extends('layouts.dashboard')
