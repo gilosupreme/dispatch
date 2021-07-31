@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->bigInteger('photo_id')->nullable()->index();
             $table->timestamps();
+
+            $table->foreignId('photo_id')->on()
         });
     }
 
