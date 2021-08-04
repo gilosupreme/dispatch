@@ -1,15 +1,15 @@
 @extends('layouts.supervisor-dashboard')
 
 @section('user_name')
-   {{ $user->name }} &nbsp;<i class="fa fa-caret-down"></i>
+   {{$user->name }} &nbsp;<i class="fa fa-caret-down"></i>
 @endsection
 
 @section('profile-pic-sm')
-    {{ $user->photo ? $user->photo->path : 'vendor/assets/images/users/avatar-1.jpg' }}
+    {{ $user->photo ? $user->photo->path : '/vendor/assets/images/users/avatar-1.jpg' }}
 @endsection
 
 @section('profile-pic-lg')
-    {{ $user->photo !== null ? $user->photo->path : 'vendor/assets/images/users/avatar-1.jpg' }}
+    {{ $user->photo ? $user->photo->path : '/vendor/assets/images/users/avatar-1.jpg' }}
 @endsection
 
 @section('alerts')
@@ -20,40 +20,48 @@
         <ul>
             @foreach ($errors->all() as $error)
             <li>
-                <strong>{{$error}}</strong>
+                <strong>{{ $error }}</strong>
             </li>
             @endforeach
         </ul>
     </div>
 @endif
+
+@endsection
+
+@section('dashboard_panels')
+<div class="text-center">
+    <img src="{{ $user->photo ? $user->photo->path : '/vendor/assets/images/users/avatar-1.jpg' }}" alt="" class="border border-rounded" height="200">
+</div>
 @endsection
 
 @section('table_name')
-    <em> Enroll A New User </em>
+    <em> Update User Information </em>
 @endsection
 
 @section('table_content')
-<form class="form-horizontal" method="POST" action=" {{ route('users.store') }} " enctype="multipart/form-data">
+<form class="form-horizontal" method="POST" action=" {{ route('users.update', $user->id) }} " enctype="multipart/form-data">
     @csrf
+    <input type="hidden" class="form-control" name="_method" value="PATCH">
     <div class="form-group">
         <label class="col-md-2 control-label">Full Names</label>
         <div class="col-md-10">
-            <input type="text" class="form-control" name="name" placeholder="Full Names">
-            <span class="help-block"><small>Enter User's Full Three Names</small></span>
+            <input type="text" class="form-control" name="name" value=" {{ $user->name }} ">
+            <span class="help-block"><small>Enter User's Full Names</small></span>
         </div>
     </div>
 
     <div class="form-group">
         <label class="col-md-2 control-label" for="email">Email</label>
         <div class="col-md-10">
-            <input type="email" id="email" name="email" class="form-control" placeholder="Email Address">
+            <input type="email" id="email" name="email" class="form-control" value="{{ $user->email }}">
         </div>
     </div>
 
     <div class="form-group">
         <label class="col-sm-2 control-label">User Role</label>
         <div class="col-sm-10">
-            <select class="form-control">
+            <select class="form-control" >
                 @foreach ($roles_array as $role)
                     <option> {{ $role }} </option>
                 @endforeach
@@ -82,7 +90,7 @@
     <div class="form-group">
         <label class="col-md-2 control-label"></label>
         <div class="col-md-4">
-            <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">Create User</button>
+            <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">Update User</button>
         </div>
     </div>
 

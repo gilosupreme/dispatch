@@ -35,7 +35,7 @@
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <div class="text-center">
-                        <a href="index.html" class="logo">HOME | DASHBOARD</a>
+                        <a href="{{ route('supervisor.index') }}" class="logo">HOME | DASHBOARD</a>
                     </div>
                 </div>
                 <!-- Button mobile view to collapse sidebar menu -->
@@ -84,7 +84,7 @@
                                     <a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="ti-fullscreen"></i></a>
                                 </li>
                                 <li class="dropdown">
-                                    <a href="" class="dropdown-toggle profile waves-effect waves-light" data-bs-toggle="dropdown" aria-expanded="true"><img src="{{ asset('vendor/assets/images/users/avatar-1.jpg') }}" alt="user-img" class="img-circle"> </a>
+                                    <a href="" class="dropdown-toggle profile waves-effect waves-light" data-bs-toggle="dropdown" aria-expanded="true"><img src="@yield('profile-pic-sm')" alt="user-img" class="img-circle"> </a>
                                     <ul class="dropdown-menu">
                                         <li><a href="javascript:void(0)"> Profile</a></li>
                                         <li><a href="javascript:void(0)"><span class="badge badge-success pull-right">5</span> Settings </a></li>
@@ -117,7 +117,7 @@
                 <div class="sidebar-inner slimscrollleft">
                     <div class="user-details">
                         <div class="text-center">
-                            <img src="{{ asset('vendor/assets/images/users/avatar-1.jpg') }}" alt="" class="img-circle" height="50">
+                            <img src="@yield('profile-pic-lg')" alt="" class="img-circle" height="50">
                         </div>
                         <div class="user-info">
                             <div class="dropdown">
@@ -140,7 +140,7 @@
                                 </ul>
                             </div>
 
-                            <p class="text-muted m-0"><i class="fa fa-dot-circle-o text-success"></i> Online</p>
+                            <p class="text-muted m-0"><i class="fa fa-dot-circle-o text-success"></i> Online </p>
                         </div>
                     </div>
                     <!--- Divider -->
@@ -191,7 +191,7 @@
                                 <div class="page-header-title">
                                     <h4 class="pull-left page-title">Dashboard</h4>
                                     <ol class="breadcrumb pull-right">
-                                        <li><a href=" {{ route('dispatcher.index') }} ">Dispatch</a></li>
+                                        <li><a href=" {{ route('supervisor.index') }} ">Dispatch</a></li>
                                         <li class="active">Dashboard</li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -199,7 +199,7 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row mb-md-1">
                             @yield('dashboard_panels')
                         </div>
 
@@ -246,14 +246,9 @@
         <script src="{{ asset('vendor/assets/js/wow.min.js') }}"></script>
         <script src="{{ asset('vendor/assets/js/jquery.nicescroll.js') }}"></script>
         <script src="{{ asset('vendor/assets/js/jquery.scrollTo.min.js') }}"></script>
-
         <script src="{{ asset('vendor/assets/plugins/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
 
         <!-- Datatables-->
-        {{-- <script src="{{ asset('vendor/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('vendor/assets/plugins/datatables/dataTables.bootstrap.js') }}"></script>
-        <script src="{{ asset('vendor/assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
-        <script src="{{ asset('vendor/assets/plugins/datatables/responsive.bootstrap.min.js') }}"></script> --}}
         <script src="{{ asset('vendor/assets/plugins/datatables/dataTables.min.js') }}"></script>
         <script src="{{ asset('vendor/assets/pages/datatables.init.js') }}"></script>
 

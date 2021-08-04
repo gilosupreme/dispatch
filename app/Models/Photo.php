@@ -10,6 +10,8 @@ class Photo extends Model
 {
     use HasFactory;
 
+    protected $path = '/images/';
+
     protected $fillable = [
         'path'
     ];
@@ -17,5 +19,10 @@ class Photo extends Model
     public function user()
     {
         return $this->hasOne(User::class);
+    }
+
+    public function getPathAttribute($value)
+    {
+        return $this->path . $value;
     }
 }
