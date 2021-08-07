@@ -134,11 +134,17 @@ class SupervisorUsersController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-        unlink(public_path() . $user->photo->path);
 
-        $user->delete();
-        Session::flash('user.delete', 'The User: ' . $user->name . ' has been deleted successfully!');
+        if (unlink(public_path() . $user->photo->path)) {
+            $user->delete();
+            Session::flash('user.delete', 'The User: ' . $user->name . ' has been deleted successfully!');
 
-        return redirect()->route('users.index');
+            return redirect()->route('users.index');
+        } else {
+            $user->delete();
+            Session::flash('user.delete', 'The User: ' . $user->name . ' has been deleted successfully!');
+
+            return redirect()->route('users.index');
+        }
     }
 }

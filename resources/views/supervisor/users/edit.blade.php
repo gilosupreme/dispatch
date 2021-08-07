@@ -95,11 +95,11 @@
         </div>
 </form>
 <form class="form-horizontal" method="POST" action=" {{ route('users.destroy', $user->id) }} ">
-    @csrf
-    <div class="col-md-4">
-        <input type="hidden" class="form-control" name="_method" value="DELETE">
-        <button type="submit" class="btn btn-danger btn-block waves-effect waves-light">Delete User</button>
+        @csrf
+        <div class="col-md-4">
+            <input type="hidden" class="form-control" name="_method" value="DELETE">
+            <button type="submit" class="btn btn-danger btn-block waves-effect waves-light">Delete User</button>
+        </div>
     </div>
-</div>
 </form>
 @endsection
