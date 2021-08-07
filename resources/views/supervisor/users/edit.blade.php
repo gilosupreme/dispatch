@@ -62,6 +62,7 @@
         <label class="col-sm-2 control-label">User Role</label>
         <div class="col-sm-10">
             <select class="form-control" name="role_id">
+                <option hidden selected disabled> {{ $user->role->role }} </option>
                 @foreach ($roles_array as $id => $role)
                     <option value="{{ $id }}"> {{ $role }} </option>
                 @endforeach
@@ -92,7 +93,13 @@
         <div class="col-md-4">
             <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">Update User</button>
         </div>
+</form>
+<form class="form-horizontal" method="POST" action=" {{ route('users.destroy', $user->id) }} ">
+    @csrf
+    <div class="col-md-4">
+        <input type="hidden" class="form-control" name="_method" value="DELETE">
+        <button type="submit" class="btn btn-danger btn-block waves-effect waves-light">Delete User</button>
     </div>
-
+</div>
 </form>
 @endsection

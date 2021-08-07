@@ -203,7 +203,7 @@
                             @yield('dashboard_panels')
                         </div>
 
-                        <div class="row">
+                        <div class="row m-t-10">
                             <div class="col-md-12">
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">
