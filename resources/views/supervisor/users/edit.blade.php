@@ -30,7 +30,7 @@
 @endsection
 
 @section('dashboard_panels')
-<div class="text-center">
+<div class="text-center mb-1">
     <img src="{{ $user->photo ? $user->photo->path : '/vendor/assets/images/users/avatar-1.jpg' }}" alt="" class="border border-rounded" height="200">
 </div>
 @endsection
@@ -61,9 +61,9 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">User Role</label>
         <div class="col-sm-10">
-            <select class="form-control" >
-                @foreach ($roles_array as $role)
-                    <option> {{ $role }} </option>
+            <select class="form-control" name="role_id">
+                @foreach ($roles_array as $id => $role)
+                    <option value="{{ $id }}"> {{ $role }} </option>
                 @endforeach
             </select>
         </div>

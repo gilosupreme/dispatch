@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class SupervisorRedirectController extends Controller
 {
@@ -13,6 +15,8 @@ class SupervisorRedirectController extends Controller
 
     public function index()
     {
-        return view('supervisor.index');
+        $users = User::all();
+        $user = Auth::user();
+        return view('supervisor.index', compact('users', 'user'));
     }
 }
