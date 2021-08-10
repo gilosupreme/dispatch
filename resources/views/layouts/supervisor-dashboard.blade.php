@@ -147,7 +147,7 @@
                     <div id="sidebar-menu">
                         <ul>
                             <li>
-                                <a href="index.html" class="waves-effect"><i class="ti-home"></i><span> Dashboard </span></a>
+                                <a href="{{ route('supervisor.index') }}" class="waves-effect"><i class="ti-home"></i><span> Dashboard </span></a>
                             </li>
 
 
@@ -157,6 +157,10 @@
                                     <li><a href="{{ route('users.index') }}">All Users</a></li>
                                     <li><a href="{{ route('users.create') }}">Create User</a></li>
                                 </ul>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('media.index') }}" class="waves-effect"><i class="ti-video-clapper"></i><span> Media </span></a>
                             </li>
 
                             <li class="has_sub">

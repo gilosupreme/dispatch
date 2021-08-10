@@ -50,7 +50,7 @@
                             @csrf
 
                             <div class="form-group mb-3">
-                                <label class="label" for="name">{{ __('Name') }}</label>
+                                <label class="label" for="name">Full {{ __('Name') }}</label>
                                 <input type="text" id="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">

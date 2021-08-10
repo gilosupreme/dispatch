@@ -3,6 +3,7 @@
 use App\Http\Controllers\CustomLoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DispatcherRedirectController;
+use App\Http\Controllers\SupervisorMediaController;
 use App\Http\Controllers\SupervisorRedirectController;
 use App\Http\Controllers\SupervisorUsersController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/supervisor', [SupervisorRedirectController::class, 'index'])->name('supervisor.index');
     Route::get('/dispatcher', [DispatcherRedirectController::class, 'index'])->name('dispatcher.index');
+    Route::resource('/supervisor/media', SupervisorMediaController::class);
     Route::resource('/supervisor/users', SupervisorUsersController::class);
 });
 

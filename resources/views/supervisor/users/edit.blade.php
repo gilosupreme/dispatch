@@ -90,8 +90,8 @@
 
     <div class="form-group">
         <label class="col-md-2 control-label"></label>
-        <div class="col-md-4">
-            <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">Update User</button>
+        <div class="col-md-4 m-b-1 mb-md-1">
+            <button type="submit" class="btn btn-primary btn-block waves-effect waves-light mb-1">Update User</button>
         </div>
 </form>
 <form class="form-horizontal" method="POST" action=" {{ route('users.destroy', $user->id) }} ">
