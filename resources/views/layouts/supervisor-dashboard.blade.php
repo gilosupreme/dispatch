@@ -164,6 +164,14 @@
                             </li>
 
                             <li class="has_sub">
+                                <a href="{{ route('users.index') }}" class="waves-effect"><i class="fa fa-ambulance"></i> <span> Ambulances </span> <span class="pull-right"><i class="mdi mdi-plus"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ route('ambulance.index') }}">All Ambulances</a></li>
+                                    <li><a href="{{ route('ambulance.create') }}">Create Ambulance</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="ti-map-alt"></i><span> Maps </span><span class="pull-right"><i class="mdi mdi-plus"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="maps-google.html"> Google Map</a></li>

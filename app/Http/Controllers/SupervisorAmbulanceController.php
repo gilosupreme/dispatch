@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ambulance;
 use Illuminate\Http\Request;
 
 class SupervisorAmbulanceController extends Controller
@@ -13,7 +14,12 @@ class SupervisorAmbulanceController extends Controller
      */
     public function index()
     {
-        //
+        //CODE TO TEST OUT RELATIONSHIP STATUS
+
+        // $ambulances = Ambulance::all();
+        // foreach ($ambulances as $ambulance) {
+        //     echo $ambulance->driver->name;
+        // }
     }
 
     /**

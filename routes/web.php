@@ -6,6 +6,7 @@ use App\Http\Controllers\DispatcherRedirectController;
 use App\Http\Controllers\SupervisorMediaController;
 use App\Http\Controllers\SupervisorRedirectController;
 use App\Http\Controllers\SupervisorUsersController;
+use App\Http\Controllers\SupervisorAmbulanceController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +22,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -34,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dispatcher', [DispatcherRedirectController::class, 'index'])->name('dispatcher.index');
     Route::resource('/supervisor/media', SupervisorMediaController::class);
     Route::resource('/supervisor/users', SupervisorUsersController::class);
+    Route::resource('/supervisor/ambulance', SupervisorAmbulanceController::class);
 });
 
 
