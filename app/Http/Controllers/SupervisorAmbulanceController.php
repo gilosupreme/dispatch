@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ambulance;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SupervisorAmbulanceController extends Controller
 {
@@ -14,12 +15,10 @@ class SupervisorAmbulanceController extends Controller
      */
     public function index()
     {
-        //CODE TO TEST OUT RELATIONSHIP STATUS
+        $ambulances = Ambulance::all();
+        $user = Auth::user();
 
-        // $ambulances = Ambulance::all();
-        // foreach ($ambulances as $ambulance) {
-        //     echo $ambulance->driver->name;
-        // }
+        return view('supervisor.ambulance.index', compact('ambulances', 'user'));
     }
 
     /**
