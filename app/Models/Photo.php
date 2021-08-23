@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Ambulance;
 
 class Photo extends Model
 {
@@ -24,5 +25,10 @@ class Photo extends Model
     public function getPathAttribute($value)
     {
         return $this->path . $value;
+    }
+
+    public function ambulance()
+    {
+        return $this->hasOne(Ambulance::class);
     }
 }

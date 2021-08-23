@@ -64,7 +64,6 @@ class SupervisorUsersController extends Controller
             User::create($user_data);
             return redirect()->route('users.index');
         }
-        // dd($request->file('photo_id'));
     }
 
     /**

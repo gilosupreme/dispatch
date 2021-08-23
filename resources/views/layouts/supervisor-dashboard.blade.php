@@ -217,6 +217,7 @@
 
                         <div class="row m-t-10">
                             <div class="col-md-12">
+                                @yield('alerts')
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">@yield('table_name')</h3>

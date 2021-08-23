@@ -16,7 +16,9 @@
 
 @if (count($errors) > 0)
     <div class="alert alert-danger alert-dismissible fade in">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><strong>×</strong></span></button>
+        <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
         <ul>
             @foreach ($errors->all() as $error)
             <li>
@@ -26,6 +28,7 @@
         </ul>
     </div>
 @endif
+
 @endsection
 
 @section('table_name')
@@ -38,7 +41,7 @@
     <div class="form-group">
         <label class="col-md-2 control-label">Full Names</label>
         <div class="col-md-10">
-            <input type="text" class="form-control" name="name" placeholder="Full Names">
+            <input type="text" class="form-control" name="name" placeholder="Full Names" value="{{ old('name') }}">
             <span class="help-block"><small>Enter User's Full Three Names</small></span>
         </div>
     </div>
@@ -46,16 +49,16 @@
     <div class="form-group">
         <label class="col-md-2 control-label" for="email">Email</label>
         <div class="col-md-10">
-            <input type="email" id="email" name="email" class="form-control" placeholder="Email Address">
+            <input type="email" id="email" name="email" class="form-control" placeholder="Email Address" value="{{ old('email') }}">
         </div>
     </div>
 
     <div class="form-group">
         <label class="col-sm-2 control-label">User Role</label>
         <div class="col-sm-10">
-            <select class="form-control">
-                @foreach ($roles_array as $role)
-                    <option> {{ $role }} </option>
+            <select class="form-control" name="role_id">
+                @foreach ($roles_array as $id =>$role)
+                    <option value="{{ $id }}"> {{ $role }} </option>
                 @endforeach
             </select>
         </div>
@@ -66,7 +69,7 @@
         <div class="col-md-10">
             <button type="button" class="fileupload btn btn-primary waves-effect waves-light">
                 <span>Choose File</span>
-                <input type="file" class="upload" name="photo_id">
+                <input type="file" class="upload" name="photo_id" value="{{ old('photo_id') }}">
             </button>
             <span class="help-block"><small>Hover On Button For File's Name</small></span>
         </div>
