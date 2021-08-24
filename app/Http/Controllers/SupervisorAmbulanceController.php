@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ambulance;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,7 +29,9 @@ class SupervisorAmbulanceController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        $drivers_array = User::where('role_id', 3)->get();
+        return view('supervisor.ambulance.create', compact('user', 'drivers_array'));
     }
 
     /**
