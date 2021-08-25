@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ambulance;
 use App\Models\User;
+use App\Models\Photo;
+use App\Models\Ambulance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\CreateAmbulanceRequest;
 
 class SupervisorAmbulanceController extends Controller
 {
@@ -40,9 +42,22 @@ class SupervisorAmbulanceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateAmbulanceRequest $request)
     {
-        //
+        $ambulance_details = $request->all();
+
+        if ($file = $request->file('photo_id')) {
+
+            $name = $file->getClientOriginalName() . time();
+            $file->move('images', $name);
+
+            $ambulance_photo = Photo::create(['path' => $name]);
+
+            $ambulance_details['photo_id'] = $ambulance_photo->id;
+        }
+
+        Ambulance::create($ambulance_details);
+        return redirect()->route('ambulance.index');
     }
 
     /**

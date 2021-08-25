@@ -28,14 +28,20 @@
         </tr>
     </thead>
 
-
     <tbody>
 
         @foreach ($ambulances as $ambulance)
             <tr>
                 <td><a href="{{ route('ambulance.edit', $ambulance->id) }}"> {{ $ambulance->id }} </a></td>
                 <td>{{ $ambulance->reg_no }}</td>
-                <td>{{ $ambulance->status }}</td>
+                <td>{{ ($ambulance->status  === 0) ? 'Resting' : 'On Duty' }}</td>
+                <td>
+                    @if ($driver = $ambulance->driver)
+                        {{ $driver['name'] }}
+                    @else
+                        {{ "No Driver Assigned" }}
+                    @endif
+                </td>
                 <td>{{ $ambulance->created_at->diffForHumans() }}</td>
             </tr>
         @endforeach

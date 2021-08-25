@@ -17,8 +17,10 @@ class CreateAmbulancesTable extends Migration
             $table->id();
             $table->string('reg_no')->unique()->index();
             $table->integer('status')->unsigned()->index()->default(0);
-            // $table->integer('driver_id')->unsigned()->nullable();
+            $table->bigInteger('photo_id')->nullable()->unsigned();
             $table->timestamps();
+
+            $table->foreign('photo_id')->references('id')->on('photos')->cascadeOnDelete();
         });
     }
 
