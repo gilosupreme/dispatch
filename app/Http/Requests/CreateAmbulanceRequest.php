@@ -24,7 +24,7 @@ class CreateAmbulanceRequest extends FormRequest
     public function rules()
     {
         return [
-            'reg_no' => 'required | min:7 | max:7 | unique:ambulances',
+            'reg_no' => 'required | min:7 | max:8 | unique:ambulances',
         ];
     }
 }

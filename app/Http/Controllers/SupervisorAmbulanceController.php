@@ -7,6 +7,7 @@ use App\Models\Photo;
 use App\Models\Ambulance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\CreateAmbulanceRequest;
 
 class SupervisorAmbulanceController extends Controller
@@ -46,6 +47,8 @@ class SupervisorAmbulanceController extends Controller
     {
         $ambulance_details = $request->all();
 
+        $ambulance_details['reg_no'] = preg_replace("/\s+/", "", $request->reg_no);
+
         if ($file = $request->file('photo_id')) {
 
             $name = $file->getClientOriginalName() . time();
@@ -79,7 +82,11 @@ class SupervisorAmbulanceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = Auth::user();
+        $drivers_array = User::where('role_id', 3)->get();
+        $ambulance = Ambulance::findOrFail($id);
+
+        return view('supervisor.ambulance.edit', compact('user', 'drivers_array', 'ambulance'));
     }
 
     /**
@@ -91,7 +98,25 @@ class SupervisorAmbulanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ambulance = Ambulance::findOrFail($id);
+        $ambulance_details = $request->all();
+
+        if ($request->reg_no === '') {
+            $ambulance_details = $request->except('reg_no');
+        }
+
+        if ($file = $request->file('photo_id')) {
+
+            $name = $file->getClientOriginalName() . time();
+            $file->move('images', $name);
+
+            $ambulance_photo = Photo::create(['path' => $name]);
+
+            $ambulance_details['photo_id'] = $ambulance_photo->id;
+        }
+
+        $ambulance->update($ambulance_details);
+        return redirect()->route('ambulance.index');
     }
 
     /**
@@ -102,6 +127,18 @@ class SupervisorAmbulanceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ambulance = Ambulance::findOrFail($id);
+
+        if (unlink(public_path() . $ambulance->photo->path)) {
+            $ambulance->delete();
+            Session::flash('ambulance.delete', 'The User: ' . $ambulance->reg_no . ' has been deleted successfully!');
+
+            return redirect()->route('ambulance.index');
+        } else {
+            $ambulance->delete();
+            Session::flash('ambulance.delete', 'The User: ' . $ambulance->reg_no . ' has been deleted successfully!');
+
+            return redirect()->route('ambulance.index');
+        }
     }
 }
