@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Photo;
 
 class Ambulance extends Model
 {
@@ -22,6 +23,11 @@ class Ambulance extends Model
     public function driver()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function photo()
+    {
+        return $this->belongsTo(Photo::class);
     }
 
     public function setRegNoAttribute($value)
