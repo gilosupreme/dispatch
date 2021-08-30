@@ -51,7 +51,7 @@
         <label class="col-sm-2 control-label">Ambulance Status</label>
         <div class="col-sm-10">
             <select class="form-control" name="status">
-                    <option value="0"> Resting </option>
+                    <option value="0"> Standby </option>
                     <option value="1"> On Duty </option>
             </select>
         </div>

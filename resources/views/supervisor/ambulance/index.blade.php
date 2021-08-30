@@ -24,6 +24,7 @@
             <th>ID</th>
             <th>Registration Number</th>
             <th>Ambulance Status</th>
+            <th>Assigned Driver</th>
             <th>Date Registered</th>
         </tr>
     </thead>
@@ -34,7 +35,7 @@
             <tr>
                 <td><a href="{{ route('ambulance.edit', $ambulance->id) }}"> {{ $ambulance->id }} </a></td>
                 <td>{{ $ambulance->reg_no }}</td>
-                <td>{{ ($ambulance->status  === 0) ? 'Resting' : 'On Duty' }}</td>
+                <td>{{ ($ambulance->status  === 0) ? 'Standby' : 'On Duty' }}</td>
                 <td>
                     @if ($driver = $ambulance->driver)
                         {{ $driver['name'] }}

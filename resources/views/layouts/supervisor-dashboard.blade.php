@@ -164,6 +164,14 @@
                             </li>
 
                             <li class="has_sub">
+                                <a href="{{ route('location.index') }}" class="waves-effect"><i class="ti-location-pin"></i> <span> Locations </span> <span class="pull-right"><i class="mdi mdi-plus"></i></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ route('location.index') }}">All Locations</a></li>
+                                    <li><a href="{{ route('location.create') }}">Add A Location</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="has_sub">
                                 <a href="{{ route('users.index') }}" class="waves-effect"><i class="fa fa-ambulance"></i> <span> Ambulances </span> <span class="pull-right"><i class="mdi mdi-plus"></i></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="{{ route('ambulance.index') }}">All Ambulances</a></li>
@@ -177,6 +185,10 @@
                                     <li><a href="maps-google.html"> Google Map</a></li>
                                     <li><a href="maps-vector.html"> Vector Map</a></li>
                                 </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-headphone-alt"></i><span> Dispatch Ambulance </span></a>
                             </li>
 
                             <li>

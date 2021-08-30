@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Photo;
+use App\Models\Location;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Models\Photo;
 
 class Ambulance extends Model
 {
@@ -28,6 +29,11 @@ class Ambulance extends Model
     public function photo()
     {
         return $this->belongsTo(Photo::class);
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
     }
 
     public function setRegNoAttribute($value)

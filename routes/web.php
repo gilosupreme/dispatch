@@ -7,6 +7,7 @@ use App\Http\Controllers\SupervisorMediaController;
 use App\Http\Controllers\SupervisorRedirectController;
 use App\Http\Controllers\SupervisorUsersController;
 use App\Http\Controllers\SupervisorAmbulanceController;
+use App\Http\Controllers\SupervisorLocationsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/supervisor/media', SupervisorMediaController::class);
     Route::resource('/supervisor/users', SupervisorUsersController::class);
     Route::resource('/supervisor/ambulance', SupervisorAmbulanceController::class);
+    Route::resource('/supervisor/location', SupervisorLocationsController::class);
 });
 
 
