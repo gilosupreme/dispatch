@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateLocationRequest;
 use App\Models\Location;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -40,7 +41,7 @@ class SupervisorLocationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateLocationRequest $request)
     {
         $location_details = $request->all();
         $coordinates = explode(",", $location_details['co-ordinates']);
@@ -75,7 +76,11 @@ class SupervisorLocationsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $location = Location::findOrFail($id);
+        $users = User::all();
+        $user = Auth::user();
+
+        return view('supervisor.location.edit', compact('location', 'users', 'user'));
     }
 
     /**
@@ -87,7 +92,21 @@ class SupervisorLocationsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $location = Location::findOrFail($id);
+
+        if (trim($request['co-ordinates']) == '') {
+            $location_details = $request->except('co-ordinates');
+        } else {
+            $location_details = $request->all();
+        }
+
+        $coordinates = explode(",", $location_details['co-ordinates']);
+
+        $location_details['latitude'] = trim($coordinates[0]);
+        $location_details['longitude'] = trim($coordinates[1]);
+
+        $location->update($location_details);
+        return redirect()->route('location.index');
     }
 
     /**
@@ -98,6 +117,9 @@ class SupervisorLocationsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $location = Location::findOrFail($id);
+        $location->delete();
+
+        return redirect()->route('location.index');
     }
 }

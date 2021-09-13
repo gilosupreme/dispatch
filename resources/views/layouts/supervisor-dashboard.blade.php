@@ -188,7 +188,7 @@
                             </li>
 
                             <li>
-                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-headphone-alt"></i><span> Dispatch Ambulance </span></a>
+                                <a href="{{ route('dispatch-ambulance.index') }}" class="waves-effect"><i class="ti-headphone-alt"></i><span> Dispatch Ambulance </span></a>
                             </li>
 
                             <li>

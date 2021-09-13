@@ -2,14 +2,17 @@
 
 use App\Http\Controllers\CustomLoginController;
 use App\Http\Controllers\HomeController;
+
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 use App\Http\Controllers\DispatcherRedirectController;
 use App\Http\Controllers\SupervisorMediaController;
 use App\Http\Controllers\SupervisorRedirectController;
 use App\Http\Controllers\SupervisorUsersController;
 use App\Http\Controllers\SupervisorAmbulanceController;
 use App\Http\Controllers\SupervisorLocationsController;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\DispatchAmbulanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +41,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/supervisor/users', SupervisorUsersController::class);
     Route::resource('/supervisor/ambulance', SupervisorAmbulanceController::class);
     Route::resource('/supervisor/location', SupervisorLocationsController::class);
+    Route::resource('/dispatch-ambulance', DispatchAmbulanceController::class);
 });
 
 

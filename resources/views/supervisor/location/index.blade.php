@@ -54,7 +54,10 @@
         @foreach ($locations as $location)
             <tr>
                 <td><a href="{{ route('location.show', $location->id) }}"> {{ $location->id }} </a></td>
-                <td>{{ $location->location }}</td>
+                <td>
+                    {{ $location->location }}
+                    <a href="{{ route('location.edit', $location->id)}}"><i class="ti-pencil"></i> </a>
+                </td>
                 <td>{{ $location->hospital }}</td>
                 <td>{{ $location->created_at->diffForHumans() }}</td>
             </tr>
