@@ -25,7 +25,7 @@ class CreateLocationRequest extends FormRequest
     {
         return [
             'location' => 'required',
-            'coordinates' => 'required'
+            'co-ordinates' => 'required'
         ];
     }
 }

@@ -20,7 +20,9 @@
         <link href="{{ asset('vendor/assets/css/icons.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('vendor/assets/css/style.css') }}" rel="stylesheet" type="text/css">
 
-        <!-- Scripts -->
+        <!-- Style -->
+
+        @yield('styles')
 
     </head>
 
@@ -260,9 +262,12 @@
         <!-- END wrapper -->
 
         <!-- jQuery  -->
-        <script src="{{ asset('vendor/assets/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('vendor/assets/js/app.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('vendor/assets/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('vendor/assets/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('vendor/assets/js/jquery.slimscroll.js') }}"></script>
+        <script src="{{ asset('vendor/assets/js/parsley.min.js') }}"></script>
         <script src="{{ asset('vendor/assets/js/modernizr.min.js') }}"></script>
         <script src="{{ asset('vendor/assets/js/detect.js') }}"></script>
         <script src="{{ asset('vendor/assets/js/fastclick.js') }}"></script>
@@ -279,9 +284,46 @@
 
         <script src="{{ asset('vendor/assets/pages/dashborad.js') }}"></script>
 
-        <script src="{{ asset('vendor/assets/js/app.js') }}"></script>
-        <script src="{{ asset('js/app.js') }}"></script>
+        <script>
+            $(function () {
+                var sections = $('.form-section');
 
+                function navigateTo(index) {
+
+                    $(sections).removeClass('current').eq(index).addClass('current');
+                    $('.form-navigation .previous').toggle(index > 0);
+
+                    var atTheEnd = index >= $(sections).length - 1;
+
+                    $('.form-navigation .next').toggle(!atTheEnd);
+                    $('.form-navigation [type=submit]').toggle(atTheEnd);
+
+                }
+
+                function currentIndex() {
+                    return $(sections).index(sections.filter('.current'));
+                }
+
+                $('.form-navigation .previous').click(function () {
+                    navigateTo(currentIndex() - 1);
+                });
+
+                $('.form-navigation .next').click(function () {
+                    $('.dispatch-form').parsley().whenValidate({
+                            group: 'block-' + currentIndex()
+                    }).done(function () {
+                        navigateTo(currentIndex() + 1);
+                    });
+                });
+
+                $(sections).each(function (index, section) {
+                    $(section).find(':input').attr('data-parsley-group', 'block' + index);
+                });
+
+                navigateTo(0);
+            });
+        </script>
+        @yield('scripts')
 
     </body>
 </html>
