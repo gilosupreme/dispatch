@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ambulance;
+use App\Models\Location;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,8 +19,10 @@ class DispatchAmbulanceController extends Controller
     {
         $user = Auth::user();
         $users = User::all();
+        $locations = Location::all();
+        $ambulance_array = Ambulance::where('status', 0)->get();
 
-        return view('supervisor.dispatch', compact('users', 'user'));
+        return view('supervisor.dispatch', compact('users', 'user', 'locations', 'ambulance_array'));
     }
 
     /**
