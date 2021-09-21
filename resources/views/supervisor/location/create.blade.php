@@ -56,7 +56,7 @@
 
 @section('table_content')
 
-<form class="form-horizontal" method="POST" action=" {{ route('location.store') }} " enctype="multipart/form-data">
+<form class="form-horizontal" method="POST" action=" {{ route('location.store') }} ">
     @csrf
     <div class="form-group">
         <label class="col-md-2 control-label">Name Of Location</label>
